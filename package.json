@@ -1,11 +1,11 @@
 {
   "name": "gift-redemption-app",
-  "type": "module",
   "version": "1.0.0",
   "description": "Allows for tracking of gift redemptions",
   "main": "index.js",
   "scripts": {
-    "test2": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx ncc build index.ts && zip -j deploy.zip ./dist/*",
+    "build-deploy": "npm run build && aws lambda update-function-code --function-name gift-redemption --zip-file fileb://deploy.zip --profile adamctj", 
     "test": "jest"
   },
   "repository": {
