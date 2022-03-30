@@ -15,7 +15,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-          cache: 'npm' # experiment caching package dependencies
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -27,7 +28,7 @@ jobs:
           aws-region: ap-southeast-1
       # install npm dependencies on CI
       - name: npm install
-        working-directory: ./lambda-backend
+        working-directory: lambda-backend
         env:
           CI: true
         run:
@@ -36,7 +37,7 @@ jobs:
       # zip and place file into ./dist/ folder
       # update-function-code on lambda function
       - name: deploy
-        working-directory: ./lambda-backend
+        working-directory: lambda-backend
         run: |
           npx ncc build index.ts
           zip -j deploy.zip ./dist/*
