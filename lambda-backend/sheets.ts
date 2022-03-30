@@ -1,5 +1,3 @@
-// import { APIGatewayProxyEvent } from 'aws-lambda';
-
 type RedemptionRecord = {
   staff_pass_id: string;
   team_name: string;
