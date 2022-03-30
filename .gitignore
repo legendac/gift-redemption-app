@@ -82,6 +82,12 @@ typings/
 .nuxt
 dist
 
+# client secret file
+gift-redemption-app_client-secret.json
+
+# generated deploy.zip for AWS lambda
+deploy.zip
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and *not* Next.js
