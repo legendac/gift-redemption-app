@@ -30,6 +30,7 @@ export const handler: Handler = async (event: APIGatewayProxyEvent, context, cal
     
   const response = {
     statusCode: 200,
+    headers: { 'Access-Control-Allow-Origin': '*' },
     body: sheetData
   };
   return response;
