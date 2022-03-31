@@ -33,6 +33,10 @@ jobs:
           CI: true
         run:
           npm ci
+      - name: Copy Google Sheets client secrets to /dist
+        working-directory: lambda-backend
+        run: |
+          echo $GOOGLE_SHEETS_CLIENT_SECRET >> gift-redemption-app_client-secret.json
       # compile ts to js using ncc,
       # zip and place file into ./dist/ folder
       # update-function-code on lambda function
@@ -40,5 +44,6 @@ jobs:
         working-directory: lambda-backend
         run: |
           npx ncc build index.ts
+          cp gift-redemption-app_client-secret.json ./dist/gift-redemption-app_client-secret.json
           zip -j deploy.zip ./dist/*
           aws lambda update-function-code --function-name=gift-redemption --zip-file=fileb://deploy.zip
