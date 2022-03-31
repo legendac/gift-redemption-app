@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - .github/workflows/lambda.yml
       - lambda-backend/**
 jobs:
   deploy_lambda:

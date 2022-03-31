@@ -5,7 +5,8 @@
 #     branches:
 #       - main
 #     paths:
-#       - fe-next-app/**
+        - .github/workflows/main.yml
+#       - frontend-app/**
 # jobs:
 #   deploy_next:
 #     runs-on: ubuntu-latest
