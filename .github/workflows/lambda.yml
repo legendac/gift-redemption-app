@@ -36,8 +36,12 @@ jobs:
           npm ci
       - name: Copy Google Sheets client secrets to /dist
         working-directory: lambda-backend
+        env:
+          GOOGLE_SHEETS_CLIENT_SECRET: ${{ secrets.GOOGLE_SHEETS_CLIENT_SECRET }}
         run: |
+          touch gift-redemption-app_client-secret.json
           echo $GOOGLE_SHEETS_CLIENT_SECRET >> gift-redemption-app_client-secret.json
+          cat gift-redemption-app_client-secret.json
       # compile ts to js using ncc,
       # zip and place file into ./dist/ folder
       # update-function-code on lambda function
