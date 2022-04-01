@@ -37,6 +37,5 @@ jobs:
       - name: deploy
         working-directory: frontend-app
         run: |
-          next build
-          next deploy
+          npm run build-deploy
           aws s3 sync out s3://www.spreadjoy.sg/
