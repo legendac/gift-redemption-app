@@ -10,6 +10,11 @@ export type Redemption = {
   created_at: string;
 };
 
+export type RedemptionEntry = {
+  staff_pass_id: string;
+  team_name: string;
+};
+
 export type TeamName = {
   display: string,
   value: string
@@ -20,9 +25,12 @@ export type RedemptionResponse = {
   ops: string
 }
 
-export type RedemptionFormSubmitResult = {
+export type RedemptionFormEntry = {
   staff_pass_id: string,
-  team_name: string,
+  team_name: string
+}
+
+export type RedemptionFormResult = {
   ops: string,
   ops_message: string,
   last_staff_redeemed: string,

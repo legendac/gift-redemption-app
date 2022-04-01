@@ -13,7 +13,7 @@ const sheetUrl = 'https://docs.google.com/spreadsheets/d/1H3abnLcu_Uv0qTikaGQFTA
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
   <div className="flex min-h-screen flex-col items-center justify-center py-2">
     <Head>
-      <title>Create Next App</title>
+      <title>SpreadJoy App</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <header>
@@ -52,7 +52,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       >
         <span className="text-gray-400 font-bold">Product of Company W</span>
         {' '}
-        <Image src="/adamctj_icon.svg" alt="Company W Logo" width={72} height={40} />
+        {/* eslint-disable-next-line @next/next/no-img-element*/}
+        <img src="/adamctj_icon.svg" alt="Company W Logo" className="w-10 h-10"/>
       </div>
       
     </footer>

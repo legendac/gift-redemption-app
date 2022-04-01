@@ -1,4 +1,3 @@
-import { GetStaticProps } from 'next'
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
@@ -16,7 +15,6 @@ function Redemptions() {
 
   useEffect(() => {
     async function fetchRedemptions() {
-      // const urlData = 'http://localhost:3000/api/redemptions'
       const urlData = 'https://useczavsf8.execute-api.ap-southeast-1.amazonaws.com/default/gift-redemption?method=all'
       setLoading(true)
       try {
