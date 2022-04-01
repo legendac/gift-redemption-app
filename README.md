@@ -29,6 +29,7 @@ Extra features of the application include :-
   - <A> is a value in caps matching either of the values 'BOSS', 'STAFF' or 'MANAGER'
   - <B> is consists of exactly 12 characters of uppercased letters with numbers
   - using regex of `(BOSS|MANAGER|STAFF)_[A-Z0-9]{12}`
+- Usage of GitHub Actions scripts `.github/wokflows/*` with CI/CD for both Lambda and Frontend app
 
 ## Tech Solution
 
@@ -126,9 +127,10 @@ Using Vernel NCC to compile .ts files to .js files
 - Extract out business logic to JSON file to make the core application more reusable
 - Serve application via Cloudfront CDN for caching and improved serving speeds
 
-## Tech Debt TODO
+## Tech TODO
 
 - Improve Unit Testing suite to cater for more scenarios
+- Integrate Unit Test checking in Pipeline to support multiple branches, prevent merge to main if any tests fail
 - Reduce complexity of `Form.tsx`, extracting Component to Child components
 - Tighten up AWS IAM rules for instead of FullAccess for Lambda and S3
 - Tighten up API Gateway to filter out rules
