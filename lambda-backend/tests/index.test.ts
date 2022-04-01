@@ -33,7 +33,17 @@ const addSuccess = JSON.stringify({
     staff_pass_id: 'test123',
     team_name: 'foobar',
     created_at: 1615190110824
-  }]
+  }],
+  ops: "success"
+});
+
+const addFailure = JSON.stringify({
+  items: [{
+    staff_pass_id: 'test123',
+    team_name: 'foobar',
+    created_at: 1615190110824
+  }],
+  ops: "failure"
 });
 
 jest.mock('./../sheets')
@@ -117,6 +127,22 @@ describe('Unit Test for Lambda handler', () => {
     
     expect(result.statusCode).toEqual(200);
     expect(result.body).toEqual(addSuccess);
+    });
+
+    it('should return failure response with method: staffRedemption', async () => {
+      (attemptUserRedemption as jest.MockedFunction<any>).mockResolvedValue(addFailure);
+
+      const event: APIGatewayProxyEvent = {
+      queryStringParameters: {
+        method: 'staffRedemption',
+        staffId: 'test123',
+        teamName: 'foobar'
+      }
+    } as any;
+    const result = await IndexModuler.handler(event, null, null);
+    
+    expect(result.statusCode).toEqual(200);
+    expect(result.body).toEqual(addFailure);
     });
   })
 
