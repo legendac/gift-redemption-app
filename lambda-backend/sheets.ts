@@ -24,14 +24,8 @@ export function cleanData(data): RedemptionRecord {
   }
 }
 
-export function cleanUserData(data, staffPassId): RedemptionRecord {
-  if (data && data['staff_pass_id'] && data['staff_pass_id'] === staffPassId) {
-    return {
-      staff_pass_id: data['staff_pass_id'],
-      team_name: data['team_name'],
-      created_at: data['created_at']
-    }
-  }
+export function compareRedemptionWithStaffPassID(data, staffPassId): Boolean {
+  return (data && data['staff_pass_id'] && data['staff_pass_id'] === staffPassId)
 }
 
 // Fetch all redemptions - Used by Admin / Reporting tools
@@ -77,7 +71,6 @@ export async function getUserRedemption(staffPassId: string): Promise<string> {
 
     // Get the first tab's data
     const tab = sheet.sheetsByIndex[0];
-
     // Get row data
     const rows = await tab.getRows();
 
@@ -89,8 +82,7 @@ export async function getUserRedemption(staffPassId: string): Promise<string> {
       // Iterate through the array of rows
       // and push the clean data from your spreadsheet
       rows.forEach(row => {
-        let staffRedemptionData: RedemptionRecord = cleanUserData(row, staffPassId);
-        staffRedemptionData && data.push(staffRedemptionData);
+        compareRedemptionWithStaffPassID(row, staffPassId) && data.push(cleanData(row));
       });
     } else {
       return '';
@@ -113,7 +105,6 @@ export async function attemptUserRedemption(staffPassId: string, teamName: strin
 
     // Get the first tab's data
     const tab = sheet.sheetsByIndex[0];
-
     // Get row data
     const rows = await tab.getRows();
 
@@ -126,8 +117,7 @@ export async function attemptUserRedemption(staffPassId: string, teamName: strin
       // Iterate through the array of rows
       // and push the clean data from your spreadsheet
       rows.forEach(row => {
-        let staffRedemptionData: RedemptionRecord = cleanUserData(row, staffPassId);
-        staffRedemptionData && data.push(staffRedemptionData);
+        compareRedemptionWithStaffPassID(row, staffPassId) && data.push(cleanData(row));
       });
     }
     console.log('interim data', data);
