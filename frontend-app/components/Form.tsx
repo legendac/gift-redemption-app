@@ -217,8 +217,8 @@ function Form() {
         </fieldset>
       </form>
       
-      <div className="container py-11 mx-auto ">
-        <div className={`pt-5 mb-5 transition-colors duration-300 ease-in-out sm:rounded bg-gray-100
+      <div className="container py-11 mx-auto transition duration-300 ease-in-out ">
+        <div className={`pt-5 mb-5 sm:rounded bg-gray-100
           ${resultState.ops === "success" && ' bg-green-200'}
           ${resultState.ops.includes("failure") && ' bg-red-200'
         }`}>
